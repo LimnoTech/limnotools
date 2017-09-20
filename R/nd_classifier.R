@@ -4,6 +4,8 @@
 #'
 #' @param x a character vector values
 #'
+#' @import lubridate magrittr stringr
+#'
 #' @export
 #'
 #' @details This function assign D/ND based on the presence of a "<" flag attached to the sampling result value.

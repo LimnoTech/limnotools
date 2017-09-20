@@ -14,6 +14,7 @@
 #' x <- c('0.24', '2', '0.5', '<2.5', '<6')
 #' nd_remover(x)
 #' }
+#'
 #' @return Returns a numeric vector
 #'
 #' @seealso \code{nd_classifier}

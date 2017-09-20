@@ -1,20 +1,28 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
 [![Travis-CI Build Status](https://travis-ci.org/LimnoTech/limnotools.svg?branch=master)](https://travis-ci.org/LimnoTech/limnotools)
 
-limnotools
-==========
+# limnotools
 
 limnotools is the home for generalized versions of R functions that have been developed over the course of project work and may be useful to the larger LimnoTech R community
 
-Installation
-------------
-
+## Installation
 limnotools is not currently available on CRAN.
 
 You can install limnotools from github with:
 
-``` r
+```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("LimnoTech/limnotools")
 ```

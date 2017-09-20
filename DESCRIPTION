@@ -4,7 +4,7 @@ Title: Helpful tools for LimnoTech R users
 Version: 0.1.0
 Author: Julie Padilla [aut, cre]
 Maintainer: Julie Padilla <jpadilla@limno.com>
-Description: A home for generally useful R functions that have been developed over the course of LimnoTech project work
+Description: Limnotools is a home for generalized R functions that have been developed over the course of LimnoTech project work.
 BugReports: http://github.com/limnotech/limnotools/issues
 License: CC0
 Imports:

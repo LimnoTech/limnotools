@@ -13,11 +13,9 @@
 #'
 #' @export
 #'
-#' @details A helper function used by several data analyses to assign seasons to sampling data and to order the seasons. This function also allows the user to designate which season should be first.
+#' @details A function used to assign seasons to sampling data and to order the seasons. This function also allows the user to designate which season should be first.
 #'
 #' @return Returns a vector of ordered season factors.
-#'
-#'
 #'
 assign_season <- function(data, season = NULL, season_names = NULL, season_start = NULL, abb = FALSE) {
 

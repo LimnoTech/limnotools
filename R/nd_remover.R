@@ -3,6 +3,7 @@
 #' Assign seasons to sampling data on a monthly basis or user-defined basis
 #'
 #' @param x a character vector values
+#' @param halfDL logical, substitute half of the detection limit? Default is \code{FALSE}
 #'
 #' @export
 #'
@@ -11,7 +12,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' x <- c('0.24', '2', '0.5', '<2.5', '<6')
+#' x <- c('0.24', '2', '>0.5', '<2.5', '<6')
+#' nd_remover(x)
 #' nd_remover(x)
 #' }
 #'
@@ -20,6 +22,7 @@
 #' @seealso \code{nd_classifier}
 #'
 nd_remover <- function(x){
-  gsub('<', '', x, fixed = T)
+  signs <- c('<', '>')
+  gsub(signs, '', x, fixed = T)
 }
 

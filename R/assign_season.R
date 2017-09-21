@@ -19,6 +19,8 @@
 #'
 #' @author Julie Padilla
 #'
+#' @concept wrangling
+#'
 assign_season <- function(data, season = NULL, season_names = NULL, season_start = NULL, abb = FALSE) {
 
   dat <- data

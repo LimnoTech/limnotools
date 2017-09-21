@@ -26,6 +26,8 @@
 #'
 #' @author Julie Padilla
 #'
+#' @concept wrangling
+#'
 nd_remover <- function(x, halfDL = FALSE, ...){
 
   x <- trimws(x, ...)

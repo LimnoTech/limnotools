@@ -11,6 +11,10 @@ Imports:
     dplyr,
     lubridate,
 	magrittr,
+	maptools,
+	rgdal,
+	rgeos,
+	sp,
 	stringr
 Depends:
     R (>= 3.2.0)

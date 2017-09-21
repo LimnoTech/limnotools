@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-#' @details This function assign D/ND/GD based on the presence of a "<" or ">" flag attached to the sampling result value.
+#' @details This function assigns detect/non-detect/greater than detect (D/ND/GD) based on the presence of a "<" or ">" flag attached to the sampling result value.
 #' Currently, this function is used in conjunction with \code{nd_remover}
 #'
 #' @examples
@@ -22,7 +22,8 @@
 #'
 #' @seealso \code{nd_remover}
 #'
-##Used to assign "ND"/"GD"/"D" to values
+#' @author Julie Padilla
+#'
 nd_classifier <- function(x){
   ifelse(grepl('<', x), "ND", ifelse(grepl('>', x), "GD", "D"))
 }

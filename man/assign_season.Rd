@@ -25,5 +25,8 @@ Returns a vector of ordered season factors.
 Assign seasons to sampling data on a monthly basis or user-defined basis
 }
 \details{
-A helper function used by several data analyses to assign seasons to sampling data and to order the seasons. This function also allows the user to designate which season should be first.
+A function used to assign seasons to sampling data and to order the seasons. This function also allows the user to designate which season should be first.
+}
+\author{
+Julie Padilla
 }

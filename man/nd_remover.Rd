@@ -4,10 +4,14 @@
 \alias{nd_remover}
 \title{Remove non-detect ("<") flags from sampling data}
 \usage{
-nd_remover(x)
+nd_remover(x, halfDL = FALSE, ...)
 }
 \arguments{
 \item{x}{a character vector values}
+
+\item{halfDL}{logical, substitute half of the detection limit? Default is \code{FALSE}}
+
+\item{...}{additional arguments passed to other methods}
 }
 \value{
 Returns a numeric vector
@@ -19,6 +23,19 @@ Assign seasons to sampling data on a monthly basis or user-defined basis
 This function removes the "<" flag from the front a sampling result value.
 Currently, this function is used in conjunction with \code{nd_classifier}
 }
+\examples{
+\dontrun{
+x <- c('0.24', '>0.25', '2', '>0.5', '<2.5', '<6')
+nd_remover(x)
+
+x <- c('  0.24', '> 0.25', '2 ', '>.5', '<2.5', '<  6')
+nd_remover(x, which = 'both')
+}
+
+}
 \seealso{
-\code{nd_classifier}
+\code{nd_classifier}, \code{\link[base]{trimws}}
+}
+\author{
+Julie Padilla
 }

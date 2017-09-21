@@ -17,6 +17,8 @@
 #'
 #' @return Returns a vector of ordered season factors.
 #'
+#' @author Julie Padilla
+#'
 assign_season <- function(data, season = NULL, season_names = NULL, season_start = NULL, abb = FALSE) {
 
   dat <- data

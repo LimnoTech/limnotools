@@ -24,6 +24,8 @@
 #'
 #' @seealso \code{nd_classifier}, \code{\link[base]{trimws}}
 #'
+#' @author Julie Padilla
+#'
 nd_remover <- function(x, halfDL = FALSE, ...){
 
   x <- trimws(x, ...)

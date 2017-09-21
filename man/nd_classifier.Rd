@@ -16,9 +16,22 @@ Returns a character vector
 Assign seasons to sampling data on a monthly basis or user-defined basis
 }
 \details{
-This function assign D/ND based on the presence of a "<" flag attached to the sampling result value.
+This function assigns detect/non-detect/greater than detect (D/ND/GD) based on the presence of a "<" or ">" flag attached to the sampling result value.
 Currently, this function is used in conjunction with \code{nd_remover}
+}
+\examples{
+\dontrun{
+x <- c('0.24', '>0.25', '2', '>0.5', '<2.5', '<6')
+nd_classifier(x)
+
+x <- c('  0.24', '> 0.25', '2 ', '>.5', '<2.5', '<  6')
+nd_classifier(x)
+}
+
 }
 \seealso{
 \code{nd_remover}
+}
+\author{
+Julie Padilla
 }

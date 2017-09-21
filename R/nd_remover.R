@@ -22,7 +22,10 @@
 #' @seealso \code{nd_classifier}
 #'
 nd_remover <- function(x){
-  signs <- c('<', '>')
-  gsub(signs, '', x, fixed = T)
+  # signs <- c([<>])
+  x <- gsub('>', '', x, fixed = T)
+  x <- as.numeric(gsub('<', '', x, fixed = T))
+
+  return(x)
 }
 

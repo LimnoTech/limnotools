@@ -7,11 +7,13 @@
 #'
 #' @import ggplot2
 #'
+#' @importFrom ggthemes theme_map
 #' @importFrom maptools elide
 #' @importFrom rgdal readOGR
 #' @importFrom rgeos gUnaryUnion
+#' @importFrom rlang .data
 #' @importFrom sp bbox CRS proj4string rbind.SpatialPolygons spTransform
-#' @importFrom utils unzip
+#' @importFrom utils download.file unzip
 #'
 #' @export
 #'
@@ -34,7 +36,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = F) {
 
   get_US_county_2010_shape <- function() {
     dir <- tempdir()
-    download.file("http://www2.census.gov/geo/tiger/GENZ2010/gz_2010_us_050_00_20m.zip", destfile = file.path(dir, "gz_2010_us_050_00_20m.zip"))
+    utils::download.file("http://www2.census.gov/geo/tiger/GENZ2010/gz_2010_us_050_00_20m.zip", destfile = file.path(dir, "gz_2010_us_050_00_20m.zip"))
     unzip(file.path(dir, "gz_2010_us_050_00_20m.zip"), exdir = dir)
     readOGR(file.path(dir, "gz_2010_us_050_00_20m.shp"))
   }
@@ -92,11 +94,11 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = F) {
   # plot it----
   gg <- ggplot()
   gg <- gg + geom_map(data = map, map = map,
-                      aes(x = long, y = lat, map_id = id, group = group)
+                      aes(x = .data$long, y = .data$lat, map_id = .data$id, group = .data$group)
                       , fill = '#f8f8f8', color="#999999", size=0.15, show.legend = F)
 
   gg <- gg + coord_equal()
-  gg <- gg + theme_map()
+  gg <- gg + ggthemes::theme_map()
   gg <- gg + theme(plot.margin = unit(c(0, 0, 0, 0), "points")) #trbl
 
   gg

@@ -4,7 +4,7 @@
 \alias{us_base_map}
 \title{US Base Map}
 \usage{
-us_base_map(incl = c("contig", "AK", "HI", "PR"), agg_county = F)
+us_base_map(incl = c("contig", "AK", "HI", "PR"), agg_county = T)
 }
 \arguments{
 \item{incl}{Str vector to include AK, HI , and PR}

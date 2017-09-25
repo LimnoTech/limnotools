@@ -12,7 +12,7 @@
 #' @importFrom rgdal readOGR
 #' @importFrom rgeos gUnaryUnion
 #' @importFrom rlang .data
-#' @importFrom sp bbox CRS proj4string rbind.SpatialPolygons spTransform
+#' @importFrom sp bbox CRS proj4string spTransform
 #' @importFrom utils download.file unzip
 #'
 #' @export
@@ -32,7 +32,7 @@
 #'
 #' @concept mapping
 #'
-us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = F) {
+us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
 
   get_US_county_2010_shape <- function() {
     dir <- tempdir()
@@ -61,7 +61,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = F) {
     alaska <- maptools::elide(alaska, shift = c(-2100000, -2500000))
     sp::proj4string(alaska) <- sp::proj4string(us_aea)
 
-    us_aea_mod <- sp::rbind.SpatialPolygons(us_aea_mod, alaska)
+    us_aea_mod <- rbind(us_aea_mod, alaska)
   }
 
   if('HI' %in% incl) {
@@ -71,7 +71,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = F) {
     hawaii <- maptools::elide(hawaii, shift=c(5400000, -1400000))
     sp::proj4string(hawaii) <- sp::proj4string(us_aea)
 
-    us_aea_mod <- sp::rbind.SpatialPolygons(us_aea_mod, hawaii)
+    us_aea_mod <- rbind(us_aea_mod, hawaii)
   }
 
   if('PR' %in% incl) {
@@ -80,7 +80,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = F) {
     pr <- maptools::elide(pr, shift = c(-1400000,2000))
     sp::proj4string(pr) <- sp::proj4string(us_aea)
 
-    us_aea_mod <- sp::rbind.SpatialPolygons(us_aea_mod, pr)
+    us_aea_mod <- rbind(us_aea_mod, pr)
   }
 
   if(agg_county) {
@@ -102,7 +102,6 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = F) {
   gg <- gg + theme(plot.margin = unit(c(0, 0, 0, 0), "points")) #trbl
 
   gg
-  # return(us_aea_mod)
 }
 
 

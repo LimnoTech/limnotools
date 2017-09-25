@@ -4,10 +4,10 @@
 \alias{us_base_map}
 \title{US Base Map}
 \usage{
-us_base_map(incl = c("contig", "AK", "HI", "PR"), agg_county = T)
+us_base_map(incl = c("contig", "AK", "HI", "PR"), agg_county = F)
 }
 \arguments{
-\item{incl}{...}
+\item{incl}{Str vector to include AK, HI , and PR}
 
 \item{agg_county}{logical, should counties be aggregated tot he state-level? Defaults to \code{TRUE}}
 }
@@ -22,11 +22,7 @@ Creates a base map of the US with options
 }
 \examples{
 \dontrun{
-x <- c('0.24', '>0.25', '2', '>0.5', '<2.5', '<6')
-nd_classifier(x)
-
-x <- c('  0.24', '> 0.25', '2 ', '>.5', '<2.5', '<  6')
-nd_classifier(x)
+us_base_map()
 }
 
 }

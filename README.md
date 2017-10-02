@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/LimnoTech/limnotools.svg?branch=master)](https://travis-ci.org/LimnoTech/limnotools)
+[![Travis-CI Build Status](https://travis-ci.org/LimnoTech/limnotools.svg?branch=master)](https://travis-ci.org/LimnoTech/limnotools)[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/pkgdown)](https://cran.r-project.org/package=limnotools)
 
 limnotools
 ==========

@@ -12,7 +12,7 @@
 #' @importFrom rgdal readOGR
 #' @importFrom rgeos gUnaryUnion
 #' @importFrom rlang .data
-#' @importFrom sp bbox CRS proj4string spTransform
+#' @importFrom sp bbox CRS proj4string rbind.SpatialPolygonsDataFrame spTransform
 #' @importFrom utils download.file unzip
 #'
 #' @export
@@ -38,7 +38,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
     dir <- tempdir()
     utils::download.file("http://www2.census.gov/geo/tiger/GENZ2010/gz_2010_us_050_00_20m.zip", destfile = file.path(dir, "gz_2010_us_050_00_20m.zip"))
     unzip(file.path(dir, "gz_2010_us_050_00_20m.zip"), exdir = dir)
-    readOGR(file.path(dir, "gz_2010_us_050_00_20m.shp"))
+    rgdal::readOGR(file.path(dir, "gz_2010_us_050_00_20m.shp"))
   }
 
   us <- get_US_county_2010_shape()
@@ -52,17 +52,17 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
   # between texas and florida via similar methods to the ones we just used
   us_aea_mod <- us_aea[!us_aea$STATE %in% c("02", "15", "72"),]
 
-  if('AK' %in% incl) {
-    # extract, then rotate, shrink & move alaska (and reset projection)
-    # need to use state IDs via # https://www.census.gov/geo/reference/ansi_statetables.html
-    alaska <- us_aea[us_aea$STATE == "02", ]
-    alaska <- maptools::elide(alaska, rotate = -50)
-    alaska <- maptools::elide(alaska, scale = max(apply(sp::bbox(alaska), 1, diff)) / 2.3)
-    alaska <- maptools::elide(alaska, shift = c(-2100000, -2500000))
-    sp::proj4string(alaska) <- sp::proj4string(us_aea)
-
-    us_aea_mod <- rbind(us_aea_mod, alaska)
-  }
+  # if('AK' %in% incl) {
+  #   # extract, then rotate, shrink & move alaska (and reset projection)
+  #   # need to use state IDs via # https://www.census.gov/geo/reference/ansi_statetables.html
+  #   alaska <- us_aea[us_aea$STATE == "02", ]
+  #   alaska <- maptools::elide(alaska, rotate = -50)
+  #   alaska <- maptools::elide(alaska, scale = max(apply(sp::bbox(alaska), 1, diff)) / 2.3)
+  #   alaska <- maptools::elide(alaska, shift = c(-2100000, -2500000))
+  #   sp::proj4string(alaska) <- sp::proj4string(us_aea)
+  #
+  #   us_aea_mod <- rbind(us_aea_mod, alaska)
+  # }
 
   if('HI' %in% incl) {
     # extract, then rotate & shift hawaii
@@ -71,7 +71,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
     hawaii <- maptools::elide(hawaii, shift=c(5400000, -1400000))
     sp::proj4string(hawaii) <- sp::proj4string(us_aea)
 
-    us_aea_mod <- rbind(us_aea_mod, hawaii)
+    us_aea_mod <- rbind.SpatialPolygonsDataFrame(us_aea_mod, hawaii)
   }
 
   if('PR' %in% incl) {

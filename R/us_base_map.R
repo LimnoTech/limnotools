@@ -8,15 +8,11 @@
 #' @import ggplot2
 #'
 #' @importFrom ggthemes theme_map
-#' @importFrom maptools elide
+#' @importFrom maptools elide unionSpatialPolygons spRbind
 #' @importFrom rgdal readOGR
 #' @importFrom rgeos gUnaryUnion
 #' @importFrom rlang .data
-<<<<<<< HEAD
 #' @importFrom sp CRS bbox proj4string spTransform
-=======
-#' @importFrom sp bbox CRS proj4string rbind.SpatialPolygonsDataFrame spTransform
->>>>>>> parent of 7f24f16... Basic working us_basemap
 #' @importFrom utils download.file unzip
 #'
 #' @export

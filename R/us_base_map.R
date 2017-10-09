@@ -8,7 +8,7 @@
 #' @import ggplot2
 #'
 #' @importFrom ggthemes theme_map
-#' @importFrom maptools elide unionSpatialPolygons spRbind
+#' @importFrom maptools elide spRbind unionSpatialPolygons
 #' @importFrom rgdal readOGR
 #' @importFrom rgeos gUnaryUnion
 #' @importFrom rlang .data
@@ -51,17 +51,17 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
   # between texas and florida via similar methods to the ones we just used
   us_aea_mod <- us_aea[!us_aea$STATE %in% c("02", "15", "72"),]
 
-  # if('AK' %in% incl) {
-  #   # extract, then rotate, shrink & move alaska (and reset projection)
-  #   # need to use state IDs via # https://www.census.gov/geo/reference/ansi_statetables.html
-  #   alaska <- us_aea[us_aea$STATE == "02", ]
-  #   alaska <- maptools::elide(alaska, rotate = -50)
-  #   alaska <- maptools::elide(alaska, scale = max(apply(sp::bbox(alaska), 1, diff)) / 2.3)
-  #   alaska <- maptools::elide(alaska, shift = c(-2100000, -2500000))
-  #   sp::proj4string(alaska) <- sp::proj4string(us_aea)
-  #
-  #   us_aea_mod <- rbind(us_aea_mod, alaska)
-  # }
+  if('AK' %in% incl) {
+    # extract, then rotate, shrink & move alaska (and reset projection)
+    # need to use state IDs via # https://www.census.gov/geo/reference/ansi_statetables.html
+    alaska <- us_aea[us_aea$STATE == "02", ]
+    alaska <- maptools::elide(alaska, rotate = -50)
+    alaska <- maptools::elide(alaska, scale = max(apply(sp::bbox(alaska), 1, diff)) / 2.3)
+    alaska <- maptools::elide(alaska, shift = c(-2100000, -2500000))
+    sp::proj4string(alaska) <- sp::proj4string(us_aea)
+
+    us_aea_mod <- maptools::spRbind(us_aea_mod, alaska)
+  }
 
   if('HI' %in% incl) {
     # extract, then rotate & shift hawaii
@@ -70,7 +70,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
     hawaii <- maptools::elide(hawaii, shift=c(5400000, -1400000))
     sp::proj4string(hawaii) <- sp::proj4string(us_aea)
 
-    us_aea_mod <- rbind.SpatialPolygonsDataFrame(us_aea_mod, hawaii)
+    us_aea_mod <- maptools::spRbind(us_aea_mod, hawaii)
   }
 
   if('PR' %in% incl) {
@@ -79,33 +79,29 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
     pr <- maptools::elide(pr, shift = c(-1400000,2000))
     sp::proj4string(pr) <- sp::proj4string(us_aea)
 
-    us_aea_mod <- rbind(us_aea_mod, pr)
+    us_aea_mod <- maptools::spRbind(us_aea_mod, pr)
   }
 
   if(agg_county) {
-    us_aea.diss <- rgeos::gUnaryUnion(us_aea_mod, id = us_aea_mod@data$STATE)
+    us_aea.diss <- maptools::unionSpatialPolygons(us_aea_mod, IDs = us_aea_mod@data$STATE)
     us_aea_mod <- us_aea.diss
   }
 
   # get ready for ggplotting it... this takes a cpl seconds ----
   map <- ggplot2::fortify(us_aea_mod, region = "GEO_ID")
 
+  # return(map)
   # plot it----
   # Maybe this will help? http://adamolson.org/2015/07/15/post_about_maps/
   gg <- ggplot()
-<<<<<<< HEAD
+
   gg <- gg + geom_map(data = map, map = map
-                      , aes(map_id = .data$id, group = .data$group)
-                      , fill = '#f8f8f8', color = "#999999"
+                      , aes(long, lat, map_id = id)
+                      , fill = '#f8f8f8', color = '#999999'
                       , size = 0.15, show.legend = F)
-=======
-  gg <- gg + geom_map(data = map, map = map,
-                      aes(x = .data$long, y = .data$lat, map_id = .data$id, group = .data$group)
-                      , fill = '#f8f8f8', color="#999999", size=0.15, show.legend = F)
->>>>>>> parent of 7f24f16... Basic working us_basemap
 
   gg <- gg + coord_equal()
-  gg <- gg + ggthemes::theme_map()
+  # gg <- gg + ggthemes::theme_map()
   gg <- gg + theme(plot.margin = unit(c(0, 0, 0, 0), "points")) #trbl
 
   return(gg)

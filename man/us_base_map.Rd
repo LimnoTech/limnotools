@@ -27,9 +27,6 @@ us_base_map()
 }
 
 }
-\seealso{
-\code{nd_remover}
-}
 \author{
 Bob Rudis, Julie Padilla
 }

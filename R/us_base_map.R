@@ -27,8 +27,6 @@
 #'
 #' @return Returns a \code{\link[ggplot2]{ggplot}} object
 #'
-#' @seealso \code{nd_remover}
-#'
 #' @author Bob Rudis, Julie Padilla
 #'
 #' @concept mapping

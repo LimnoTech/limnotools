@@ -24,6 +24,8 @@
 #'
 #' @author Julie Padilla
 #'
+#' @concept wrangling
+#'
 nd_classifier <- function(x){
   ifelse(grepl('<', x), "ND", ifelse(grepl('>', x), "GD", "D"))
 }

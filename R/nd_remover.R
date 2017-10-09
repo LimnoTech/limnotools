@@ -1,6 +1,6 @@
 #' Remove non-detect ("<") flags from sampling data
 #'
-#' Assign seasons to sampling data on a monthly basis or user-defined basis
+#' Remove greater than and less than flags within a column of data
 #'
 #' @param x a character vector values
 #' @param halfDL logical, substitute half of the detection limit? Default is \code{FALSE}
@@ -25,6 +25,8 @@
 #' @seealso \code{nd_classifier}, \code{\link[base]{trimws}}
 #'
 #' @author Julie Padilla
+#'
+#' @concept wrangling
 #'
 nd_remover <- function(x, halfDL = FALSE, ...){
 

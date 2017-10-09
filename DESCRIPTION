@@ -9,8 +9,15 @@ BugReports: http://github.com/limnotech/limnotools/issues
 License: CC0
 Imports:
     dplyr,
+	ggplot2,
+	ggthemes,
     lubridate,
 	magrittr,
+	maptools,
+	rgdal,
+	rgeos,
+	rlang,
+	sp,
 	stringr
 Depends:
     R (>= 3.2.0)

@@ -17,7 +17,7 @@ nd_remover(x, halfDL = FALSE, ...)
 Returns a numeric vector
 }
 \description{
-Assign seasons to sampling data on a monthly basis or user-defined basis
+Remove greater than and less than flags within a column of data
 }
 \details{
 This function removes the "<" flag from the front a sampling result value.
@@ -38,4 +38,7 @@ nd_remover(x, which = 'both')
 }
 \author{
 Julie Padilla
+}
+\concept{
+wrangling
 }

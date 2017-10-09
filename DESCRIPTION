@@ -12,13 +12,11 @@ Imports:
 	ggplot2,
 	ggthemes,
     lubridate,
-	magrittr,
 	maptools,
 	rgdal,
 	rgeos,
 	rlang,
-	sp,
-	stringr
+	sp
 Depends:
     R (>= 3.2.0)
 Encoding: UTF-8

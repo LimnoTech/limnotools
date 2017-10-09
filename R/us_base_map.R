@@ -96,7 +96,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
   gg <- ggplot()
 
   gg <- gg + geom_map(data = map, map = map
-                      , aes(long, lat, map_id = id)
+                      , aes(map$long, map$lat, map_id = map$id)
                       , fill = '#f8f8f8', color = '#999999'
                       , size = 0.15, show.legend = F)
 

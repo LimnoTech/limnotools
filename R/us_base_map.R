@@ -13,12 +13,12 @@
 #' @importFrom rgeos gUnaryUnion
 #' @importFrom rlang .data
 #' @importFrom sp CRS bbox proj4string spTransform
-#'
 #' @importFrom utils download.file unzip
 #'
 #' @export
 #'
-#' @details Creates a base map of the US with options
+#' @details Creates a base map of the US with options for including AK, HI, and PR.
+#' This function was developed from a blog post by Bob Rudis (https://rud.is/b/2014/11/16/moving-the-earth-well-alaska-hawaii-with-r/)
 #'
 #' @examples
 #' \dontrun{
@@ -93,18 +93,19 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
   # get ready for ggplotting it... this takes a cpl seconds ----
   map <- ggplot2::fortify(us_aea_mod, region = "GEO_ID")
 
-  # return(map)
   # plot it----
+  # Maybe this will help? http://adamolson.org/2015/07/15/post_about_maps/
   gg <- ggplot()
   gg <- gg + geom_map(data = map, map = map
-                      , aes(map_id = rlang::.data$id, group = rlang::.data$group)
-                      , fill = '#f8f8f8', color="#999999", size=0.15, show.legend = F)
+                      , aes(map_id = .data$id, group = .data$group)
+                      , fill = '#f8f8f8', color = "#999999"
+                      , size = 0.15, show.legend = F)
 
   gg <- gg + coord_equal()
   gg <- gg + ggthemes::theme_map()
   gg <- gg + theme(plot.margin = unit(c(0, 0, 0, 0), "points")) #trbl
 
-  gg
+  return(gg)
 }
 
 

@@ -18,7 +18,8 @@ Returns a \code{\link[ggplot2]{ggplot}} object
 Create an empty US base map in ggplot
 }
 \details{
-Creates a base map of the US with options
+Creates a base map of the US with options for including AK, HI, and PR.
+This function was developed from a blog post by Bob Rudis (https://rud.is/b/2014/11/16/moving-the-earth-well-alaska-hawaii-with-r/)
 }
 \examples{
 \dontrun{

@@ -101,7 +101,7 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
                       , size = 0.15, show.legend = F)
 
   gg <- gg + coord_equal()
-  # gg <- gg + ggthemes::theme_map()
+  gg <- gg + ggthemes::theme_map()
   gg <- gg + theme(plot.margin = unit(c(0, 0, 0, 0), "points")) #trbl
 
   return(gg)

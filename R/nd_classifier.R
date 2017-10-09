@@ -1,6 +1,6 @@
 #' Assign detect/non-detect to sampling data
 #'
-#' Assign seasons to sampling data on a monthly basis or user-defined basis
+#' Assign detect flags to data
 #'
 #' @param x a character vector values
 #'

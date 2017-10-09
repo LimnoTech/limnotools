@@ -1,9 +1,9 @@
-#' Remove non-detect ("<") flags from sampling data
+#' Remove non-detect ("<" or ">") flags from sampling data
 #'
 #' Remove greater than and less than flags within a column of data
 #'
 #' @param x a character vector values
-#' @param halfDL logical, substitute half of the detection limit? Default is \code{FALSE}
+#' @param halfDL logical, substitute half of the detection limit? Default is \code{FALSE} (not working)
 #' @param ... additional arguments passed to other methods
 #'
 #' @export

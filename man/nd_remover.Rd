@@ -2,14 +2,14 @@
 % Please edit documentation in R/nd_remover.R
 \name{nd_remover}
 \alias{nd_remover}
-\title{Remove non-detect ("<") flags from sampling data}
+\title{Remove non-detect ("<" or ">") flags from sampling data}
 \usage{
 nd_remover(x, halfDL = FALSE, ...)
 }
 \arguments{
 \item{x}{a character vector values}
 
-\item{halfDL}{logical, substitute half of the detection limit? Default is \code{FALSE}}
+\item{halfDL}{logical, substitute half of the detection limit? Default is \code{FALSE} (not working)}
 
 \item{...}{additional arguments passed to other methods}
 }

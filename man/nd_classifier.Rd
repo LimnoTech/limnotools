@@ -13,7 +13,7 @@ nd_classifier(x)
 Returns a character vector
 }
 \description{
-Assign seasons to sampling data on a monthly basis or user-defined basis
+Assign detect flags to data
 }
 \details{
 This function assigns detect/non-detect/greater than detect (D/ND/GD) based on the presence of a "<" or ">" flag attached to the sampling result value.

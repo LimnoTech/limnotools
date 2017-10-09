@@ -4,10 +4,13 @@
 \alias{us_base_map}
 \title{US Base Map}
 \usage{
-us_base_map(incl = c("contig", "AK", "HI", "PR"), agg_county = T)
+us_base_map(incl = c("contig", "AK", "HI", "PR"), highlight_states = NULL,
+  agg_county = T)
 }
 \arguments{
 \item{incl}{Str vector to include AK, HI , and PR}
+
+\item{highlight_states}{character vector of state FIPS codes}
 
 \item{agg_county}{logical, should counties be aggregated tot he state-level? Defaults to \code{TRUE}}
 }
@@ -23,7 +26,16 @@ This function was developed from a blog post by Bob Rudis (https://rud.is/b/2014
 }
 \examples{
 \dontrun{
+
+##Just the national map
 us_base_map()
+
+##National map highlighting states with NERRS
+nerr_states <- c('01', '02', '06', '10', '12', '13', '15'
+, '23', '24', '25', '27', '28', '33', '34', '36', '37', '39'
+, '41', '44', '45', '48', '51', '53', '55', '72')
+
+us_base_map(highlight_states = nerr_states)
 }
 
 }

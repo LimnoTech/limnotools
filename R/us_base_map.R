@@ -3,6 +3,7 @@
 #' Create an empty US base map in ggplot
 #'
 #' @param incl Str vector to include AK, HI , and PR
+#' @param highlight_states character vector of state FIPS codes
 #' @param agg_county logical, should counties be aggregated tot he state-level? Defaults to \code{TRUE}
 #'
 #' @import ggplot2
@@ -22,7 +23,16 @@
 #'
 #' @examples
 #' \dontrun{
+#'
+#' ##Just the national map
 #' us_base_map()
+#'
+#' ##National map highlighting states with NERRS
+#' nerr_states <- c('01', '02', '06', '10', '12', '13', '15'
+#' , '23', '24', '25', '27', '28', '33', '34', '36', '37', '39'
+#' , '41', '44', '45', '48', '51', '53', '55', '72')
+#'
+#' us_base_map(highlight_states = nerr_states)
 #' }
 #'
 #' @return Returns a \code{\link[ggplot2]{ggplot}} object
@@ -31,7 +41,9 @@
 #'
 #' @concept mapping
 #'
-us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
+us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR')
+                        , highlight_states = NULL
+                        , agg_county = T) {
 
   get_US_county_2010_shape <- function() {
     dir <- tempdir()
@@ -90,20 +102,32 @@ us_base_map <- function(incl = c('contig', 'AK', 'HI', 'PR'), agg_county = T) {
   # get ready for ggplotting it... this takes a cpl seconds ----
   map <- ggplot2::fortify(us_aea_mod, region = "GEO_ID")
 
-  # return(map)
   # plot it----
-  # Maybe this will help? http://adamolson.org/2015/07/15/post_about_maps/
+
+  # highlight some states
   gg <- ggplot()
-
-  gg <- gg + geom_map(data = map, map = map
-                      , aes(map$long, map$lat, map_id = map$id)
-                      , fill = '#f8f8f8', color = '#999999'
-                      , size = 0.15, show.legend = F)
-
   gg <- gg + coord_equal()
   gg <- gg + ggthemes::theme_map()
   gg <- gg + theme(plot.margin = unit(c(0, 0, 0, 0), "points")) #trbl
 
+  if(is.null(highlight_states)) {
+    gg <- gg + geom_map(data = map, map = map
+                        , aes(map$long, map$lat, map_id = map$id)
+                        , fill = '#f8f8f8', color = '#999999'
+                        , size = 0.15, show.legend = F)
+
+
+  } else {
+    map$flag <- ifelse(map$id %in% highlight_states, TRUE, FALSE)
+
+    gg <- gg + geom_map(data = map, map = map
+                        , aes(map$long, map$lat, map_id = map$id, fill = map$flag)
+                        , color = '#999999', size = 0.15, show.legend = F) +
+      scale_fill_manual(values = c('#f8f8f8', '#cccccc'))
+
+  }
+
+  # return(map)
   return(gg)
 }
 

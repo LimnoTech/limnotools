@@ -19,7 +19,7 @@
 normVarNames <- function (vars, sep = "_") {
   if (sep == ".")
     sep <- "\\."
-  pat <- "_| |•| |,|-|:|/|&|\\.|\\?|\\[|\\]|\\{|\\}|\\(|\\)"
+  pat <- "_| |,|-|:|/|&|\\.|\\?|\\[|\\]|\\{|\\}|\\(|\\)"
   rep <- sep
   vars <- gsub(pat, rep, vars)
   pat <- "(?<!\\p{Lu})(\\p{Lu})(\\p{Lu}*)"

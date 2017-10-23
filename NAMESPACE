@@ -3,6 +3,7 @@
 export(assign_season)
 export(nd_classifier)
 export(nd_remover)
+export(normVarNames)
 export(us_base_map)
 import(ggplot2)
 importFrom(dplyr,left_join)

@@ -3,3 +3,13 @@
 language: R
 sudo: false
 cache: packages
+
+os:
+  - linux
+  - osx
+
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev

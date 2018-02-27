@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-#' @details Converts serial dates from excel into POSIXct dates. \code{\link[lubridate]{round_date}} takes a date-time object and rounds it to the nearest value of the specified time unit. For rounding date-times which is exactly halfway between two consecutive units, the convention is to round up. Note that this is in line with the behavior of R's \code{\link[base]{round.POSIXct}} function but does not follow the convention of the base \code{\link[base]{round}} function which "rounds to the even digit" per IEC 60559.
+#' @details Converts serial dates from excel into POSIXct dates. \code{\link[lubridate]{round_date}} takes a date-time object and rounds it to the nearest value of the specified time unit. For rounding date-times which is exactly halfway between two consecutive units, the convention is to round up. Note that this is in line with the behavior of R's \code{\link[base]{round.POSIXt}} function but does not follow the convention of the base \code{\link[base]{round}} function which "rounds to the even digit" per IEC 60559.
 #'
 #' @examples
 #' \dontrun{

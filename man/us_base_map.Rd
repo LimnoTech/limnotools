@@ -42,6 +42,4 @@ us_base_map(highlight_states = nerr_states)
 \author{
 Bob Rudis, Julie Padilla
 }
-\concept{
-mapping
-}
+\concept{mapping}

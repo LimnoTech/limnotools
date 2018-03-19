@@ -26,4 +26,4 @@ LazyData: true
 Authors@R: person(given = "Julie", family = "Padilla",
     role = c("aut","cre"),
     email = "jpadilla@limno.com")
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000

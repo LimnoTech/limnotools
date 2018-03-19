@@ -26,6 +26,4 @@ Williams, G. J. (2011), Data Mining with Rattle and R: The Art of Excavating Dat
 \author{
 Graham J. Williams
 }
-\concept{
-wrangling
-}
+\concept{wrangling}

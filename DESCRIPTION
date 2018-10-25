@@ -9,6 +9,7 @@ BugReports: http://github.com/limnotech/limnotools/issues
 License: CC0
 Imports:
     dplyr,
+	excel.link,
 	ggplot2,
 	ggthemes,
     lubridate,
@@ -18,7 +19,8 @@ Imports:
 	rgeos,
 	rlang,
 	sp,
-	stringr
+	stringr,
+	tidyr
 Depends:
     R (>= 3.2.0)
 Encoding: UTF-8
